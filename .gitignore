@@ -1,2 +1,15 @@
-*.env
-*.json
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+.pyxis/
+*.wav
+*.mp3
+*.flac
+*.ogg
+token.json
+credentials.json

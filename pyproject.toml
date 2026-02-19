@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyxis-assistant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "google-api-python-client>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+    "numpy>=2.0.0",
+    "onnxruntime>=1.20.0",
+    "openai>=1.0.0",
+    "pyttsx3>=2.98",
+    "pyside6>=6.8.0",
+    "python-dotenv>=1.0.0",
+    "sounddevice>=0.5.0",
+    "webrtcvad-wheels>=2.0.14",
+]
+
+[project.optional-dependencies]
+wake-fallback = [
+    "openwakeword==0.5.1",
+]
+
+[project.scripts]
+check = "pyxis_assistant.dev_check:main"
+pyxis = "pyxis_assistant.cli:main"
+pyxis-wake-train = "pyxis_assistant.wake_trainer:main"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.10.0",
+    "pyright>=1.1.390",
+    "ruff>=0.6.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pyright]
+pythonVersion = "3.13"
+typeCheckingMode = "basic"
+reportMissingImports = "none"
+include = ["src"]
+exclude = [".venv"]
+
+[tool.mypy]
+python_version = "3.13"
+ignore_missing_imports = true
+exclude = ["^\\.venv/"]
